@@ -69,7 +69,7 @@ type Props = {
 
 /**
  * The max duration of the card animation in milliseconds after released gesture.
- * The actual duration should be always less then that because the rest distance 
+ * The actual duration should be always less then that because the rest distance
  * is always less then the full distance of the layout.
  */
 const ANIMATION_DURATION = 500;
@@ -146,7 +146,9 @@ class CardStack extends Component {
     const { screenProps, navigation, router } = this.props;
     let screenDetails = this._screenDetails[scene.key];
     if (!screenDetails || screenDetails.state !== scene.route) {
-      const screenNavigation = addNavigationHelpers({
+      // Allow our router to implement it's own addNavigationHelpers
+      const addHelper = router.addNavigationHelpers ? router.addNavigationHelpers : addNavigationHelpers;
+      const screenNavigation = addHelper({
         ...navigation,
         state: scene.route,
       });
