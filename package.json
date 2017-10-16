@@ -43,7 +43,7 @@
   ],
   "peerDependencies": {
     "react": "*",
-    "react-native": "*"
+    "@yoco-tech/react-native": "*"
   },
   "dependencies": {
     "clamp": "^1.0.1",
@@ -77,7 +77,7 @@
     "prettier": "^1.5.3",
     "prettier-eslint": "^6.4.2",
     "react": "16.0.0-alpha.12",
-    "react-native": "^0.45.1",
+    "@yoco-tech/react-native": "^0.43.7",
     "react-native-vector-icons": "^4.2.0",
     "react-test-renderer": "^15.6.1"
   },
