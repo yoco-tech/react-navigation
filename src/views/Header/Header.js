@@ -4,7 +4,7 @@
 
 import React from 'react';
 
-import { Animated, Platform, StyleSheet, View } from 'react-native';
+import { Animated, Platform, StyleSheet, View, SafeAreaView } from 'react-native';
 
 import HeaderTitle from './HeaderTitle';
 import HeaderBackButton from './HeaderBackButton';
@@ -288,11 +288,13 @@ class Header extends React.PureComponent<void, HeaderProps, HeaderState> {
     const headerStyle = options.headerStyle;
 
     return (
-      <Animated.View {...rest} style={[styles.container, headerStyle, style]}>
-        <View style={styles.appBar}>
-          {appBar}
-        </View>
-      </Animated.View>
+      <SafeAreaView style={[headerStyle, {marginTop: -20}]}>
+        <Animated.View {...rest} style={[styles.container, headerStyle, style]}>
+          <View style={styles.appBar}>
+            {appBar}
+          </View>
+        </Animated.View>
+      </SafeAreaView>
     );
   }
 }
