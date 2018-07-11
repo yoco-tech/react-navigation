@@ -287,8 +287,22 @@ class Header extends React.PureComponent<void, HeaderProps, HeaderState> {
     const { options } = this.props.getScreenDetails(scene);
     const headerStyle = options.headerStyle;
 
+    // For iOS we must have a negative margin for the top navigation header bar
+    let marginTop = undefined;
+
+    if (Platform.OS === 'ios') {
+      marginTop = -20;
+
+      const majorVersion = parseInt(Platform.Version.split(".")[0]);
+      if (majorVersion <= 10) {
+        // The safe areas on iOS 8/9/10 don't exclude the status bar
+        // See https://github.com/facebook/react-native/pull/18534
+        marginTop = 0;
+      }
+    }
+
     return (
-      <SafeAreaView style={[headerStyle, {marginTop: -20}]}>
+      <SafeAreaView style={[headerStyle, {marginTop: marginTop}]}>
         <Animated.View {...rest} style={[styles.container, headerStyle, style]}>
           <View style={styles.appBar}>
             {appBar}
